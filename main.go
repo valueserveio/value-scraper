@@ -103,27 +103,38 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	var requestData map[string]string
+	var requestData struct {
+		CustomerURL string `json:"customer_url"`
+		ProductURL  string `json:"product_url"`
+	}
 	err = json.Unmarshal(body, &requestData)
 	if err != nil {
 		http.Error(w, "Failed to parse request body", http.StatusBadRequest)
 		return
 	}
 
-	url, exists := requestData["url"]
-	if !exists {
-		http.Error(w, "URL not provided", http.StatusBadRequest)
+	customerData, err := ScrapeData(requestData.CustomerURL)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("Failed to scrape customer URL: %v", err), http.StatusInternalServerError)
 		return
 	}
 
-	data, err := ScrapeData(url)
+	productData, err := ScrapeData(requestData.ProductURL)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to scrape URL: %v", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to scrape product URL: %v", err), http.StatusInternalServerError)
 		return
+	}
+
+	responseData := struct {
+		CustomerData map[string]string `json:"customer_data"`
+		ProductData  map[string]string `json:"product_data"`
+	}{
+		CustomerData: customerData,
+		ProductData:  productData,
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(data)
+	json.NewEncoder(w).Encode(responseData)
 }
 
 func main() {
