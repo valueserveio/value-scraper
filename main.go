@@ -63,7 +63,7 @@ func ScrapeData(url string) (map[string]string, error) {
 			if _, exists := uniqueText[text]; !exists && text != "" && !jsonLikePattern.MatchString(text) && !strings.Contains(text, "iframe") {
 				uniqueText[text] = struct{}{}
 				if !strings.Contains(allText.String(), text) {
-					allText.WriteString(text + "\n")
+					allText.WriteString(text)
 				}
 			}
 		})
