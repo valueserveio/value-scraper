@@ -10,6 +10,9 @@ import (
 )
 
 // ScrapeData scrapes valuable data from the given URL
+// TODO: Return Summary
+// TODO: Create structured output to return JSON from OpenAI. Should return json `{"summary": "blah blah blah"}`
+// TODO: Update tests
 func ScrapeData(url string) (map[string]string, error) {
 	data := make(map[string]string)
 	var allText strings.Builder
@@ -65,8 +68,6 @@ func ScrapeData(url string) (map[string]string, error) {
 	// data["allText"] = strings.Join(uniqueAllText, "\n")
 
 	s := ScrapedData{}
-
-	s.OriginalText = allText.String()
 
 	summarizedText, err := s.Summarize(allText.String())
 	if err != nil {

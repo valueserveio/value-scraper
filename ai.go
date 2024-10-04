@@ -50,12 +50,13 @@ type AI interface {
 	Summarize(text string) (string, error)
 }
 
+type Summary string
+
 type ScrapedData struct {
-	OriginalText string
-	Summary      string
+	Summary
 }
 
-func (ai *ScrapedData) Summarize(text string) (string, error) {
+func (ai *ScrapedData) Summarize(text string) (Summary, error) {
 
 	client := &http.Client{}
 	// Create the request body
@@ -76,12 +77,12 @@ func (ai *ScrapedData) Summarize(text string) (string, error) {
 	// Parse openAIRequest to JSON
 	jsonData, err := json.Marshal(openAIRequest)
 	if err != nil {
-		return "", err
+		return ai.Summary, err
 	}
 
 	req, err := http.NewRequest("POST", "https://api.openai.com/v1/chat/completions", bytes.NewBuffer(jsonData))
 	if err != nil {
-		return "", err
+		return ai.Summary, err
 	}
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", "Bearer "+os.Getenv("OPENAI_API_KEY"))
@@ -89,7 +90,7 @@ func (ai *ScrapedData) Summarize(text string) (string, error) {
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Println("Error sending request to OpenAI:", err)
-		return "", err
+		return ai.Summary, err
 	}
 
 	defer resp.Body.Close()
@@ -98,9 +99,9 @@ func (ai *ScrapedData) Summarize(text string) (string, error) {
 	err = json.NewDecoder(resp.Body).Decode(&completionResponse)
 	if err != nil {
 		log.Println("Error decoding response from OpenAI:", err)
-		return "", err
+		return ai.Summary, err
 	}
 
-	ai.Summary = completionResponse.Choices[0].Message.Content
+	ai.Summary = Summary(completionResponse.Choices[0].Message.Content)
 	return ai.Summary, nil
 }
