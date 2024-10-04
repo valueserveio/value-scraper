@@ -54,13 +54,13 @@ func TestHandlerIntegration(t *testing.T) {
 
 	// Additional checks for responseData
 	if len(responseData.CustomerData) > 0 {
-		t.Logf("Customer Data: %v\n", responseData.CustomerData)
+		//t.Logf("Customer Data: %v\n", responseData.CustomerData)
 	} else {
 		t.Error("Expected customer data, got empty map")
 	}
 
 	if len(responseData.ProductData) > 0 {
-		t.Logf("Product Data: %v\n", responseData.ProductData)
+		//t.Logf("Product Data: %v\n", responseData.ProductData)
 	} else {
 		t.Error("Expected product data, got empty map")
 	}
