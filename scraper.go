@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"log"
 	"regexp"
 	"strings"
@@ -19,7 +18,7 @@ type ScrapedData struct {
 
 // TODO: Update tests
 
-func ScrapeData(url string) ([]byte, error) {
+func ScrapeData(url string) (ScrapedData, error) {
 	data := ScrapedData{URL: url}
 	var allText strings.Builder
 	uniqueText := make(map[string]struct{})
@@ -65,7 +64,7 @@ func ScrapeData(url string) ([]byte, error) {
 	// Visit the URL
 	err := c.Visit(url)
 	if err != nil {
-		return nil, err
+		return data, err
 	}
 
 	// // Remove duplicates from the collected text (replaced with other solution)
@@ -78,7 +77,7 @@ func ScrapeData(url string) ([]byte, error) {
 	summarizedText, err := s.Summarize(allText.String())
 	if err != nil {
 		log.Println("Error summarizing text:", err)
-		return nil, err
+		return data, err
 	}
 
 	s.Summary = summarizedText
@@ -88,12 +87,12 @@ func ScrapeData(url string) ([]byte, error) {
 	//data.AllText = allText.String()
 
 	// Convert struct to JSON
-	jsonData, err := json.Marshal(data)
-	if err != nil {
-		return nil, err
-	}
+	// jsonData, err := json.Marshal(data)
+	// if err != nil {
+	// 	return data, err
+	// }
 
-	return jsonData, nil
+	return data, nil
 
 	// data["allText"] = allText.String()
 }

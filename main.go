@@ -1,62 +1,71 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 
 	"github.com/joho/godotenv"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
+type requestBody struct {
+	CustomerURL string `json:"customerUrl"`
+	ProductURL  string `json:"productUrl"`
+}
+
+type responseBody struct {
+	CustomerData ScrapedData `json:"customerData"`
+	ProductData  ScrapedData `json:"productData"`
+}
+
+func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
 
-	body, err := io.ReadAll(r.Body)
-	if err != nil {
-		http.Error(w, "Failed to read request body", http.StatusBadRequest)
-		return
-	}
-	defer r.Body.Close()
-
-	var requestData struct {
-		CustomerURL string `json:"customer_url"`
-		ProductURL  string `json:"product_url"`
-	}
-	err = json.Unmarshal(body, &requestData)
-	if err != nil {
-		http.Error(w, "Failed to parse request body", http.StatusBadRequest)
+	var requestPayload requestBody
+	if err := json.NewDecoder(r.Body).Decode(&requestPayload); err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
 	}
 
-	customerData, err := ScrapeData(requestData.CustomerURL)
+	customerData, err := ScrapeData(requestPayload.CustomerURL)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to scrape customer URL: %v", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Error scraping customer URL: %v", err), http.StatusInternalServerError)
 		return
 	}
 
-	productData, err := ScrapeData(requestData.ProductURL)
+	productData, err := ScrapeData(requestPayload.ProductURL)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to scrape product URL: %v", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Error scraping product URL: %v", err), http.StatusInternalServerError)
 		return
 	}
 
-	responseData := struct {
-		CustomerData []byte `json:"customer_data"`
-		ProductData  []byte `json:"product_data"`
-	}{
+	response := responseBody{
 		CustomerData: customerData,
 		ProductData:  productData,
 	}
 
-	// TODO: response needs type conversion | example response output: {"customer_data":"eyJ1cmwiOiJodHRwOi8vYmVyb3BzLmNvbSIsI......
+	// Marshal the response struct to JSON
+	jsonData, err := json.Marshal(response)
+	if err != nil {
+		http.Error(w, "Error marshaling JSON response", http.StatusInternalServerError)
+		return
+	}
+
+	// Format the JSON output
+	var formattedJSON bytes.Buffer
+	if err := json.Indent(&formattedJSON, jsonData, "", "  "); err != nil {
+		http.Error(w, "Error formatting JSON response", http.StatusInternalServerError)
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(responseData)
+	w.WriteHeader(http.StatusOK)
+	w.Write(formattedJSON.Bytes())
 }
 
 func main() {
@@ -65,7 +74,7 @@ func main() {
 		log.Fatal("Error loading .env.local file")
 	}
 
-	http.HandleFunc("/scrape", handler)
+	http.HandleFunc("/scrape", scrapeHandler)
 	log.Println("Server started at :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
