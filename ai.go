@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -52,11 +53,11 @@ type AI interface {
 
 type Summary string
 
-type ScrapedData struct {
+type ScrapedDataAI struct {
 	Summary
 }
 
-func (ai *ScrapedData) Summarize(text string) (Summary, error) {
+func (ai *ScrapedDataAI) Summarize(text string) (Summary, error) {
 
 	client := &http.Client{}
 	// Create the request body
@@ -100,6 +101,10 @@ func (ai *ScrapedData) Summarize(text string) (Summary, error) {
 	if err != nil {
 		log.Println("Error decoding response from OpenAI:", err)
 		return ai.Summary, err
+	}
+
+	if len(completionResponse.Choices) == 0 {
+		return ai.Summary, fmt.Errorf("no choices returned from OpenAI")
 	}
 
 	ai.Summary = Summary(completionResponse.Choices[0].Message.Content)

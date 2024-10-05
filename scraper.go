@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
 	"regexp"
 	"strings"
@@ -9,25 +9,31 @@ import (
 	"github.com/gocolly/colly/v2"
 )
 
-// ScrapeData scrapes valuable data from the given URL
-// TODO: Return Summary
-// TODO: Create structured output to return JSON from OpenAI. Should return json `{"summary": "blah blah blah"}`
+type ScrapedData struct {
+	URL         string `json:"url,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Description string `json:"description,omitempty"`
+	Summary     string `json:"summary,omitempty"`
+	// AllText     string `json:"allText,omitempty"`
+}
+
 // TODO: Update tests
-func ScrapeData(url string) (map[string]string, error) {
-	data := make(map[string]string)
+
+func ScrapeData(url string) ([]byte, error) {
+	data := ScrapedData{URL: url}
 	var allText strings.Builder
 	uniqueText := make(map[string]struct{})
 	c := colly.NewCollector()
 
-	data["URL"] = url
+	data.URL = url
 
 	// Define what to scrape
 	c.OnHTML("title", func(e *colly.HTMLElement) {
-		data["title"] = e.Text
+		data.Title = e.Text
 	})
 
 	c.OnHTML("meta[name=description]", func(e *colly.HTMLElement) {
-		data["description"] = e.Attr("content")
+		data.Description = e.Attr("content")
 	})
 
 	// // Capture all text (replaced with other solution)
@@ -67,7 +73,7 @@ func ScrapeData(url string) (map[string]string, error) {
 	// uniqueAllText := removeDuplicates(allTextSlice)
 	// data["allText"] = strings.Join(uniqueAllText, "\n")
 
-	s := ScrapedData{}
+	s := ScrapedDataAI{}
 
 	summarizedText, err := s.Summarize(allText.String())
 	if err != nil {
@@ -76,9 +82,18 @@ func ScrapeData(url string) (map[string]string, error) {
 	}
 
 	s.Summary = summarizedText
-	fmt.Println("Summary:", s.Summary)
+	// fmt.Println("Summary:", s.Summary)
 
-	data["allText"] = allText.String()
+	data.Summary = string(summarizedText)
+	//data.AllText = allText.String()
 
-	return data, nil
+	// Convert struct to JSON
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		return nil, err
+	}
+
+	return jsonData, nil
+
+	// data["allText"] = allText.String()
 }

@@ -46,12 +46,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	responseData := struct {
-		CustomerData map[string]string `json:"customer_data"`
-		ProductData  map[string]string `json:"product_data"`
+		CustomerData []byte `json:"customer_data"`
+		ProductData  []byte `json:"product_data"`
 	}{
 		CustomerData: customerData,
 		ProductData:  productData,
 	}
+
+	// TODO: response needs type conversion | example response output: {"customer_data":"eyJ1cmwiOiJodHRwOi8vYmVyb3BzLmNvbSIsI......
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(responseData)
