@@ -32,13 +32,13 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	customerData, err := ScrapeData(requestPayload.CustomerURL)
+	customerData, err := ScrapeData(requestPayload.CustomerURL, true)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error scraping customer URL: %v", err), http.StatusInternalServerError)
 		return
 	}
 
-	productData, err := ScrapeData(requestPayload.ProductURL)
+	productData, err := ScrapeData(requestPayload.ProductURL, true)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error scraping product URL: %v", err), http.StatusInternalServerError)
 		return

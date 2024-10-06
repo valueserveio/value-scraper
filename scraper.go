@@ -18,7 +18,7 @@ type ScrapedData struct {
 
 // TODO: Update tests
 
-func ScrapeData(url string) (ScrapedData, error) {
+func ScrapeData(url string, generateSummary bool) (ScrapedData, error) {
 	data := ScrapedData{URL: url}
 	var allText strings.Builder
 	uniqueText := make(map[string]struct{})
@@ -72,18 +72,18 @@ func ScrapeData(url string) (ScrapedData, error) {
 	// uniqueAllText := removeDuplicates(allTextSlice)
 	// data["allText"] = strings.Join(uniqueAllText, "\n")
 
-	s := ScrapedDataAI{}
-
-	summarizedText, err := s.Summarize(allText.String())
-	if err != nil {
-		log.Println("Error summarizing text:", err)
-		return data, err
+	if generateSummary {
+		s := ScrapedDataAI{}
+		summarizedText, err := s.Summarize(allText.String())
+		if err != nil {
+			log.Println("Error summarizing text:", err)
+			return data, err
+		}
+		s.Summary = summarizedText
+		// fmt.Println("Summary:", s.Summary)
+		data.Summary = string(summarizedText)
 	}
 
-	s.Summary = summarizedText
-	// fmt.Println("Summary:", s.Summary)
-
-	data.Summary = string(summarizedText)
 	//data.AllText = allText.String()
 
 	// Convert struct to JSON
