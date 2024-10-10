@@ -30,7 +30,7 @@ func TestScrapeData(t *testing.T) {
 	}))
 	defer mockServer.Close()
 
-	// Call the ScrapeData function
+	// Call the ScrapeData function with false argument to ignore AI generation of summary
 	data, err := ScrapeData(mockServer.URL, false)
 	assert.NoError(t, err)
 

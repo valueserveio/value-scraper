@@ -11,8 +11,8 @@ import (
 )
 
 type requestBody struct {
-	CustomerURL string `json:"customerUrl"`
-	ProductURL  string `json:"productUrl"`
+	CustomerURL string `json:"customer_url"`
+	ProductURL  string `json:"product_url"`
 }
 
 type responseBody struct {
@@ -75,6 +75,6 @@ func main() {
 	}
 
 	http.HandleFunc("/scrape", scrapeHandler)
-	log.Println("Server started at :8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Println("Server started at :3000")
+	log.Fatal(http.ListenAndServe(":3000", nil))
 }

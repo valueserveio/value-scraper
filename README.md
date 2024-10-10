@@ -3,7 +3,7 @@
 Example POST request: 
 
 ```
-curl -X POST http://localhost:8080/scrape \
+curl -X POST http://localhost:3000/scrape \
      -H "Content-Type: application/json" \
      -d '{
            "customer_url": "http://example.com/customer",
