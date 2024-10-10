@@ -64,11 +64,11 @@ func (ai *ScrapedDataAI) Summarize(text string) (Summary, error) {
 	openAIRequest := OpenAIRequest{
 		Model: "gpt-4o",
 		Messages: []Message{
-			Message{
+			{
 				Role:    "user",
 				Content: "I want you to summarize the what information is on following webpage in text format.",
 			},
-			Message{
+			{
 				Role:    "user",
 				Content: text,
 			},
