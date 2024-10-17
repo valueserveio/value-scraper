@@ -1,5 +1,7 @@
 FROM golang:alpine AS builder
 
+RUN apk update && apk add --no-cache ca-certificates && rm -rf /var/cache/apk/*
+
 WORKDIR /app
 
 COPY go.mod go.sum ./
