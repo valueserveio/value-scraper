@@ -69,9 +69,9 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	err := godotenv.Load(".env.local")
-	if err != nil {
-		log.Fatal("Error loading .env.local file")
+	// Load .env.local file if it exists
+	if err := godotenv.Load(".env.local"); err != nil {
+		log.Printf("No .env.local file found: %v", err)
 	}
 
 	http.HandleFunc("/scrape", scrapeHandler)
