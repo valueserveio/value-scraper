@@ -18,7 +18,6 @@ COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
 WORKDIR /app
 
-COPY .env.local .
 COPY --from=builder /app/main .
 
 EXPOSE 3000
