@@ -11,13 +11,11 @@ import (
 )
 
 type requestBody struct {
-	CustomerURL string `json:"customer_url"`
-	ProductURL  string `json:"product_url"`
+	WebpageURL string `json:"url"`
 }
 
 type responseBody struct {
-	CustomerData ScrapedData `json:"customerData"`
-	ProductData  ScrapedData `json:"productData"`
+	WebpageData ScrapedData `json:"WebpageData"`
 }
 
 func scrapeHandler(w http.ResponseWriter, r *http.Request) {
@@ -32,21 +30,14 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	customerData, err := ScrapeData(requestPayload.CustomerURL, true)
+	WebpageData, err := ScrapeData(requestPayload.WebpageURL, true)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Error scraping customer URL: %v", err), http.StatusInternalServerError)
-		return
-	}
-
-	productData, err := ScrapeData(requestPayload.ProductURL, true)
-	if err != nil {
-		http.Error(w, fmt.Sprintf("Error scraping product URL: %v", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Error scraping URL: %v", err), http.StatusInternalServerError)
 		return
 	}
 
 	response := responseBody{
-		CustomerData: customerData,
-		ProductData:  productData,
+		WebpageData: WebpageData,
 	}
 
 	// Marshal the response struct to JSON

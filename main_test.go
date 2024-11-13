@@ -17,7 +17,7 @@ func MockScrapeData(url string) (ScrapedData, error) {
 }
 
 func TestScrapeHandler(t *testing.T) {
-	// Mock server to serve HTML content for customer and product URLs
+	// Mock server to serve HTML content for URL
 	mockServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/html")
 		w.Write([]byte(`
@@ -40,8 +40,7 @@ func TestScrapeHandler(t *testing.T) {
 
 	// Create a request payload
 	requestPayload := requestBody{
-		CustomerURL: mockServer.URL,
-		ProductURL:  mockServer.URL,
+		WebpageURL: mockServer.URL,
 	}
 
 	// Marshal the request payload to JSON
@@ -69,21 +68,14 @@ func TestScrapeHandler(t *testing.T) {
 			return
 		}
 
-		customerData, err := MockScrapeData(requestPayload.CustomerURL)
+		webpageData, err := MockScrapeData(requestPayload.WebpageURL)
 		if err != nil {
-			http.Error(w, fmt.Sprintf("Error scraping customer URL: %v", err), http.StatusInternalServerError)
-			return
-		}
-
-		productData, err := MockScrapeData(requestPayload.ProductURL)
-		if err != nil {
-			http.Error(w, fmt.Sprintf("Error scraping product URL: %v", err), http.StatusInternalServerError)
+			http.Error(w, fmt.Sprintf("Error scraping URL: %v", err), http.StatusInternalServerError)
 			return
 		}
 
 		response := responseBody{
-			CustomerData: customerData,
-			ProductData:  productData,
+			WebpageData: webpageData,
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -103,12 +95,8 @@ func TestScrapeHandler(t *testing.T) {
 	err = json.NewDecoder(rr.Body).Decode(&response)
 	assert.NoError(t, err)
 
-	// Verify the scraped data for customer and product
-	assert.Equal(t, mockServer.URL, response.CustomerData.URL)
-	assert.Equal(t, "Test Title", response.CustomerData.Title)
-	assert.Equal(t, "Test Description", response.CustomerData.Description)
-
-	assert.Equal(t, mockServer.URL, response.ProductData.URL)
-	assert.Equal(t, "Test Title", response.ProductData.Title)
-	assert.Equal(t, "Test Description", response.ProductData.Description)
+	// Verify the scraped data
+	assert.Equal(t, mockServer.URL, response.WebpageData.URL)
+	assert.Equal(t, "Test Title", response.WebpageData.Title)
+	assert.Equal(t, "Test Description", response.WebpageData.Description)
 }
