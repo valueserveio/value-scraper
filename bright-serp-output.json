@@ -1,0 +1,426 @@
+{
+  "general": {
+    "search_engine": "google",
+    "results_cnt": 248000,
+    "search_time": 0.27,
+    "language": "en",
+    "location": "Foley, Alabama",
+    "mobile": false,
+    "basic_view": false,
+    "search_type": "text",
+    "page_title": "darktrace email - Google Search",
+    "timestamp": "2024-11-14T15:59:33.351Z"
+  },
+  "input": {
+    "original_url": "http://www.google.com/search?q=darktrace+email",
+    "request_id": "hl_b5f7b95e_psxcp4ftm4q"
+  },
+  "navigation": [
+    {
+      "title": "Images",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&udm=2&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQtKgLegQIGRAB"
+    },
+    {
+      "title": "News",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&tbm=nws&source=lnms&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ0pQJegQIFBAB"
+    },
+    {
+      "title": "Videos",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&udm=7&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQtKgLegQIGhAB"
+    },
+    {
+      "title": "Forums",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&udm=18&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQs6gLegQIFhAB"
+    },
+    {
+      "title": "Shopping",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&udm=28&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&ved=1t:220175&ictx=111"
+    },
+    {
+      "title": "Web",
+      "href": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=darktrace+email&udm=14&fbs=AEQNm0Aa4sjWe7Rqy32pFwRj0UkWd8nbOJfsBGGB5IQQO6L3JzWreY9LW7LdGrLDAFqYDH2Z7s7jqgHIAW8PVnwe_sR_e-RCOLF8PNV6cgrvTe9W1QlY3sOMCnrD6DpPmucUF3Q4DWCnbUQ16OCFEw0bA3f-zorCYPCwItkuWVcknbOv4-nN1bzai1VYTk7zJThGO9aVJKR1TUIesAdeoQ7gAi3QfFsX3Q&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQs6gLegQIFxAB"
+    }
+  ],
+  "organic": [
+    {
+      "link": "https://darktrace.com/products/email",
+      "display_link": "https://darktrace.com › products › email",
+      "title": "AI-Based Email Security Software | Email Threat Protection",
+      "description": "With Darktrace's self-learning cyber security AI, you're protected against future email attacks that aren't limited to past attack rules & data. Get a demo.",
+      "image": "data:image/jpeg;base64,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",
+      "image_alt": "darktrace email from darktrace.com",
+      "image_base64": "data:image/jpeg;base64,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",
+      "rank": 1,
+      "global_rank": 2
+    },
+    {
+      "link": "https://www.reddit.com/r/sysadmin/comments/px15pv/anyone_with_darktrace_email_filter/",
+      "display_link": "10+ comments · 3 years ago",
+      "title": "Anyone with Darktrace email filter? : r/sysadmin",
+      "description": "We must try out Darktrace email filter/protection \"Antigena Email Version 5\". They are a very uncommon vendor in our country and I have never used them before.",
+      "rank": 2,
+      "global_rank": 7
+    },
+    {
+      "link": "https://darktrace.com/cyber-ai-glossary/email-security",
+      "display_link": "https://darktrace.com › cyber-ai-glossary › email-security",
+      "title": "What is Email Security?",
+      "description": "Explore what email security is, why it's important, types of email security and attacks, as well as what to do if your email has been compromised.",
+      "rank": 3,
+      "global_rank": 8
+    },
+    {
+      "link": "https://darktrace.com/products/email/integrations",
+      "display_link": "https://darktrace.com › products › email › integrations",
+      "title": "Integrations | Darktrace/Email",
+      "description": "Darktrace/Email was built with an open architecture, making integrations quick and simple. Custom integrations are available upon request.",
+      "rank": 4,
+      "global_rank": 9
+    },
+    {
+      "link": "https://www.gartner.com/reviews/market/email-security/vendor/darktrace/product/darktraceemail",
+      "display_link": "https://www.gartner.com › ... › Darktrace/Email",
+      "title": "Darktrace/Email Reviews, Ratings & Features 2024",
+      "description": "Darktrace/Email is great in detecting malicious emails and links in emails. The AI learns and marks problematic mails wisely. False postivies are rare. Likewise ...",
+      "extensions": [
+        {
+          "type": "rating",
+          "text": "4.8(217)",
+          "rank": 1
+        }
+      ],
+      "rank": 5,
+      "global_rank": 10
+    },
+    {
+      "link": "https://darktrace.com/blog/antigena-email-version-5-a-matter-of-time",
+      "display_link": "https://darktrace.com › blog › antigena-email-version-5...",
+      "title": "Antigena Email Version 5: The Future of Email Protection",
+      "description": "Version 5 of Antigena Email enhances security operations with AI-powered threat detection and intuitive reporting for busy security teams. Darktrace Version 5 ...",
+      "rank": 6,
+      "global_rank": 11
+    },
+    {
+      "link": "https://www.cyberseer.net/technologies/darktrace/darktrace-email/",
+      "display_link": "https://www.cyberseer.net › Technologies › Darktrace",
+      "title": "Darktrace Email",
+      "description": "Darktrace Email uses AI to stop the most advanced email threats to protect employees from the full range of threats targeting inboxes.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ1dsK1wyP7VCb9GG65V-RzP4smrxeknU8Nt1jeLIokEfj4iMVL_A8&usqp=CAE&s",
+      "image_alt": "darktrace email from www.cyberseer.net",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ1dsK1wyP7VCb9GG65V-RzP4smrxeknU8Nt1jeLIokEfj4iMVL_A8&usqp=CAE&s",
+      "rank": 7,
+      "global_rank": 12
+    },
+    {
+      "link": "https://www.securityhq.com/services/email-as-a-service/",
+      "display_link": "https://www.securityhq.com › services › email-as-a-serv...",
+      "title": "Darktrace/Email as a Service",
+      "description": "Darktrace/Email as a Service is a highly sophisticated 24/7 monitoring service that utilizes unsupervised Machine Learning (ML), providing contextual knowledge.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKT6NaZogKq7LADkoc7oWZR6bIweQcW6exVNRWt6eDqATCsHiJYIxo&usqp=CAE&s",
+      "image_alt": "darktrace email from www.securityhq.com",
+      "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKT6NaZogKq7LADkoc7oWZR6bIweQcW6exVNRWt6eDqATCsHiJYIxo&usqp=CAE&s",
+      "rank": 8,
+      "global_rank": 13
+    },
+    {
+      "link": "https://darktrace.com/",
+      "display_link": "https://darktrace.com",
+      "title": "Darktrace | Cyber security that learns you",
+      "description": "Darktrace AI interrupts in-progress cyber-attacks in seconds, including ransomware, email phishing, and threats to cloud environments and critical ...",
+      "rank": 9,
+      "global_rank": 14
+    },
+    {
+      "link": "https://darktrace.com/cyber-ai-glossary/secure-email-gateway-seg",
+      "display_link": "https://darktrace.com › cyber-ai-glossary › secure-email...",
+      "title": "Secure Email Gateway",
+      "description": "Discover the power of secure email gateways (SEG) or secure email servers (SEC) to protect against malicious email behavior like phishing and spam.",
+      "rank": 10,
+      "global_rank": 15
+    }
+  ],
+  "top_ads": [
+    {
+      "link": "https://darktrace.com/cyber-ai",
+      "display_link": "https://www.darktrace.com",
+      "referral_link": "https://www.google.com/aclk?sa=l&ai=DChcSEwiX_5rKmNyJAxXdLdQBHYTpB1wYABAAGgJvYQ&co=1&ase=2&gclid=EAIaIQobChMIl_-aypjciQMV3S3UAR2E6QdcEAAYASAAEgK87vD_BwE&sig=AOD64_2dPnv55d2IViIoQ4wxuW-qQQTh1A&q&nis=4&adurl",
+      "title": "Darktrace AI",
+      "description": "AI-powered Cyber Security — Darktrace Cyber AI uniquely adapts to your business and novel cyber-attacks. Darktrace...",
+      "extensions": [
+        {
+          "type": "site_link",
+          "link": "https://darktrace.com/resources/a-cisos-guide-to-email-security-2023",
+          "text": "Email Security Whitepaper",
+          "description": "Download the 2023 CISO's Guide to Email Security from Darktrace.",
+          "extended": true
+        },
+        {
+          "type": "site_link",
+          "link": "https://darktrace.com/integrations",
+          "text": "Darktrace Integrations",
+          "description": "Any VPN. Any SSE. Any Workflow. Any Cloud. Any SIEM. Any SOAR.",
+          "extended": true
+        },
+        {
+          "type": "site_link",
+          "link": "https://darktrace.com/resources/reducing-cyber-risk-through-preventative-cyber-security",
+          "text": "Reduce Cyber Risk",
+          "description": "Get the preventative cyber security whitepaper from Darktrace.",
+          "extended": true
+        },
+        {
+          "type": "site_link",
+          "link": "https://darktrace.com/free-trial",
+          "text": "Start Your Free Trial",
+          "description": "Install virtually or with hardware in just 1 hour, with no commitment.",
+          "extended": true
+        },
+        {
+          "type": "site_link",
+          "link": "https://darktrace.com/products",
+          "text": "AI Cybersecurity Products",
+          "description": "Prevent threats across the business always-on cyber security solution.",
+          "extended": true
+        }
+      ],
+      "rank": 1,
+      "global_rank": 1
+    }
+  ],
+  "pagination": {
+    "pages": [
+      {
+        "page": 2,
+        "start": 10,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=10&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAE"
+      },
+      {
+        "page": 3,
+        "start": 20,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=20&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAG"
+      },
+      {
+        "page": 4,
+        "start": 30,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=30&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAI"
+      },
+      {
+        "page": 5,
+        "start": 40,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=40&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAK"
+      },
+      {
+        "page": 6,
+        "start": 50,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=50&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAM"
+      },
+      {
+        "page": 7,
+        "start": 60,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=60&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAO"
+      },
+      {
+        "page": 8,
+        "start": 70,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=70&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAQ"
+      },
+      {
+        "page": 9,
+        "start": 80,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=80&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAS"
+      },
+      {
+        "page": 10,
+        "start": 90,
+        "link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=90&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAU"
+      }
+    ],
+    "current_page": 1,
+    "next_page": 2,
+    "next_page_start": 10,
+    "next_page_link": "https://www.google.com/search?q=darktrace+email&sca_esv=c6004f725def933e&hl=en&ei=ZB42Z8fnMKjhwN4Pgu_XuQM&start=10&sa=N&sstk=ATObxK6dZzxhO8dK3lmnxBJ--ilrRdiHaB2aaWN1X3xzqocBDjPpt8qbaeYTHHDMwm03i0v3_a0VwTuw_QMCXprTc6tcb-PsUG6Kqg&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ8tMDegQINBAE"
+  },
+  "related": [
+    {
+      "text": "Darktrace email login",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+email+login&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAg9EAE",
+      "rank": 1,
+      "global_rank": 16
+    },
+    {
+      "text": "Darktrace Antigena Email",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+Antigena+Email&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAhFEAE",
+      "rank": 2,
+      "global_rank": 17
+    },
+    {
+      "text": "Darktrace/email security",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace/email+security&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAhEEAE",
+      "rank": 3,
+      "global_rank": 18
+    },
+    {
+      "text": "Darktrace email reddit",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+email+reddit&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAhCEAE",
+      "rank": 4,
+      "global_rank": 19
+    },
+    {
+      "text": "Darktrace Email alerts",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+Email+alerts&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAg_EAE",
+      "rank": 5,
+      "global_rank": 20
+    },
+    {
+      "text": "Darktrace EMAIL datasheet",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+EMAIL+datasheet&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAg4EAE",
+      "rank": 6,
+      "global_rank": 21
+    },
+    {
+      "text": "Darktrace Email pricing",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+Email+pricing&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAg3EAE",
+      "rank": 7,
+      "global_rank": 22
+    },
+    {
+      "text": "Darktrace email review",
+      "link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Darktrace+email+review&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQ1QJ6BAg2EAE",
+      "rank": 8,
+      "global_rank": 23
+    }
+  ],
+  "people_also_ask": [
+    {
+      "question": "What is the Darktrace email add in?",
+      "question_link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=What+is+the+Darktrace+email+add+in%3F&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQzmd6BAggEAY",
+      "answer_source": "AI-Based Email Security Software | Email Threat Protection",
+      "answer_link": "https://darktrace.com/products/email#:~:text=When%20you%20add%20Darktrace%20%2F%20EMAIL,tailored%20to%20your%20specific%20business.",
+      "answer_display_link": "https://darktrace.com › products › emailhttps://darktrace.com › products › email",
+      "answer_html": "<div class=\"IZE3Td\" jsslot=\"\"><div jsname=\"oQYOj\" class=\"r2fjmd t0bRye\" data-hveid=\"CCAQBQ\" data-ved=\"2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQu04oAHoECCAQBQ\"><div id=\"ZB42Z8fnMKjhwN4Pgu_XuQM__38\"><div class=\"wDYxhc\" data-md=\"61\" style=\"clear:none\"><div class=\"LGOjhe\" data-attrid=\"wa:/description\" data-hveid=\"CDEQAA\"><span class=\"BxUVEf ILfuVd\" lang=\"en\"><srpx-bugfix></srpx-bugfix><span class=\"hgKElc\">When you add Darktrace / EMAIL to your native email security, you're <b>adding a deeper layer of security that combines a traditional threat intelligence and attack-centric approach with a behavior-centric filter tailored to your specific business</b>.</span></span></div></div></div></div></div>",
+      "answers": [
+        {
+          "type": "answer",
+          "value": {
+            "text": "When you add Darktrace / EMAIL to your native email security, you're adding a deeper layer of security that combines a traditional threat intelligence and attack-centric approach with a behavior-centric filter tailored to your specific business."
+          },
+          "rank": 1
+        }
+      ],
+      "rank": 1,
+      "global_rank": 3
+    },
+    {
+      "question": "What is the format for Darktrace email?",
+      "question_link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=What+is+the+format+for+Darktrace+email%3F&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQzmd6BAgeEAY",
+      "answer_source": "Darktrace Email Formats & Email Address Examples | LeadIQ",
+      "answer_link": "https://leadiq.com/c/darktrace/5a1d9707230000540085aa69/email-format",
+      "answer_display_link": "https://leadiq.com › darktrace › email-formathttps://leadiq.com › darktrace › email-format",
+      "answer_html": "<div class=\"IZE3Td\" jsslot=\"\"><div jsname=\"oQYOj\" class=\"r2fjmd t0bRye\" data-hveid=\"CB4QBQ\" data-ved=\"2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQu04oAHoECB4QBQ\"><div id=\"ZB42Z8fnMKjhwN4Pgu_XuQM__45\"><div class=\"wDYxhc\" data-md=\"135\"><div class=\"Crs1tb\" data-hveid=\"CCcQAA\"><div class=\"iKJnec\" aria-level=\"3\" role=\"heading\">Most Common Email Formats at Darktrace</div><div class=\"webanswers-webanswers_table__webanswers-table\"><table><tbody><tr class=\"ztXv9\"><th style=\"padding-left:0\">Darktrace Email Formats</th><th>Example</th><th>Percentage</th></tr><tr><td style=\"padding-left:0\">First.Last@darktrace.com</td><td>John.Doe@darktrace.com</td><td>92%</td></tr><tr><td style=\"padding-left:0\">FirstLast@darktrace.com</td><td>JohnDoe@darktrace.com</td><td>4%</td></tr><tr><td style=\"padding-left:0\">First@darktrace.com</td><td>John@darktrace.com</td><td>2%</td></tr><tr><td style=\"padding-left:0\">Last@darktrace.com</td><td>Doe@darktrace.com</td><td>2%</td></tr></tbody></table></div></div></div></div></div></div>",
+      "answers": [
+        {
+          "type": "table",
+          "title": "Most Common Email Formats at Darktrace",
+          "items": [
+            [
+              {
+                "text": "Darktrace Email Formats"
+              },
+              {
+                "text": "Example"
+              },
+              {
+                "text": "Percentage"
+              }
+            ],
+            [
+              {
+                "text": "First.Last@darktrace.com"
+              },
+              {
+                "text": "John.Doe@darktrace.com"
+              },
+              {
+                "text": "92%"
+              }
+            ],
+            [
+              {
+                "text": "FirstLast@darktrace.com"
+              },
+              {
+                "text": "JohnDoe@darktrace.com"
+              },
+              {
+                "text": "4%"
+              }
+            ],
+            [
+              {
+                "text": "First@darktrace.com"
+              },
+              {
+                "text": "John@darktrace.com"
+              },
+              {
+                "text": "2%"
+              }
+            ],
+            [
+              {
+                "text": "Last@darktrace.com"
+              },
+              {
+                "text": "Doe@darktrace.com"
+              },
+              {
+                "text": "2%"
+              }
+            ]
+          ],
+          "rank": 1
+        }
+      ],
+      "rank": 2,
+      "global_rank": 4
+    },
+    {
+      "question": "What's happening with Darktrace?",
+      "question_link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=What%27s+happening+with+Darktrace%3F&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQzmd6BAgdEAY",
+      "answer_source": "Thoma Bravo Completes Acquisition of Darktrace",
+      "answer_link": "https://www.thomabravo.com/press-releases/thoma-bravo-completes-acquisition-of-darktrace#:~:text=London%2C%20United%20Kingdom%E2%80%94Thoma%20Bravo,Company%20at%20approximately%20%245.3%20billion.",
+      "answer_display_link": "https://www.thomabravo.com › press-releases › thoma-br...https://www.thomabravo.com › press-releases › thoma-br...",
+      "answer_html": "<div class=\"IZE3Td\" jsslot=\"\"><div jsname=\"oQYOj\" class=\"r2fjmd t0bRye\" data-hveid=\"CB0QBQ\" data-ved=\"2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQu04oAHoECB0QBQ\"><div id=\"ZB42Z8fnMKjhwN4Pgu_XuQM__48\"><div class=\"wDYxhc\" data-md=\"61\" style=\"clear:none\"><div class=\"LGOjhe\" data-attrid=\"wa:/description\" data-hveid=\"CCsQAA\"><span class=\"ILfuVd\" lang=\"en\"><srpx-bugfix></srpx-bugfix><span class=\"hgKElc\">London, United Kingdom—<b>Thoma Bravo, a leading software investment firm, today announced the completion of the all-cash acquisition of Darktrace plc</b> (“the Company”), a global leader in cybersecurity artificial intelligence, valuing the Company at approximately $5.3 billion.</span></span><span class=\"kX21rb ZYHQ7e\">Oct 1, 2024</span></div></div></div></div></div>",
+      "answers": [
+        {
+          "type": "answer",
+          "value": {
+            "text": "London, United Kingdom—Thoma Bravo, a leading software investment firm, today announced the completion of the all-cash acquisition of Darktrace plc (“the Company”), a global leader in cybersecurity artificial intelligence, valuing the Company at approximately $5.3 billion.Oct 1, 2024"
+          },
+          "rank": 1
+        }
+      ],
+      "rank": 3,
+      "global_rank": 5
+    },
+    {
+      "question": "Is Darktrace a secure email gateway?",
+      "question_link": "https://www.google.com/search?sca_esv=c6004f725def933e&hl=en&q=Is+Darktrace+a+secure+email+gateway%3F&sa=X&ved=2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQzmd6BAgfEAY",
+      "answer_source": "Secure Email Gateway - Darktrace",
+      "answer_link": "https://darktrace.com/cyber-ai-glossary/secure-email-gateway-seg#:~:text=Because%20Darktrace%20understands%20the%20human,%2C%20data%20loss%2C%20and%20ransomware.",
+      "answer_display_link": "https://darktrace.com › cyber-ai-glossary › secure-email...https://darktrace.com › cyber-ai-glossary › secure-email...",
+      "answer_html": "<div class=\"IZE3Td\" jsslot=\"\"><div jsname=\"oQYOj\" class=\"r2fjmd t0bRye\" data-hveid=\"CB8QBQ\" data-ved=\"2ahUKEwjHqZbKmNyJAxWoMNAFHYL3NTcQu04oAHoECB8QBQ\"><div id=\"ZB42Z8fnMKjhwN4Pgu_XuQM__51\"><div class=\"wDYxhc\" data-md=\"61\" style=\"clear:none\"><div class=\"LGOjhe\" data-attrid=\"wa:/description\" data-hveid=\"CC8QAA\"><span class=\"BxUVEf ILfuVd\" lang=\"en\"><srpx-bugfix></srpx-bugfix><span class=\"hgKElc\">Because Darktrace understands the human behind email communications rather than knowledge of past attacks, <b>it can stop the most sophisticated and evolving email security risks like generative AI attacks, BEC, account takeover, supply chain attacks, data loss, and ransomware</b>.</span></span></div></div></div></div></div>",
+      "answers": [
+        {
+          "type": "answer",
+          "value": {
+            "text": "Because Darktrace understands the human behind email communications rather than knowledge of past attacks, it can stop the most sophisticated and evolving email security risks like generative AI attacks, BEC, account takeover, supply chain attacks, data loss, and ransomware."
+          },
+          "rank": 1
+        }
+      ],
+      "rank": 4,
+      "global_rank": 6
+    }
+  ]
+}
