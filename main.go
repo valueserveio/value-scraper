@@ -34,7 +34,9 @@ type SnapshotStatus struct {
 
 // Coming from crunchbase
 type CompanyInfo struct {
-	Products []ProductDetails `json:"products_and_services,omitempty"`
+	FullDescription string           `json:"full_description,omitempty"`
+	Products        []ProductDetails `json:"products_and_services,omitempty"`
+	EmployeeCount   string           `json:"num_employees"`
 }
 
 type ProductDetails struct {
@@ -69,11 +71,11 @@ func main() {
 		fmt.Printf("No .env.local file found: %v", err)
 	}
 
-	company_website := "https://darktrace.com"
+	company_website := "https://www.energytransfer.com"
 	//customer_website := "https://topgolf.com"
 
 	// Set up the proxy URL
-	proxyURL, err := url.Parse("http://brd-customer-hl_2658a232-zone-serp_api1:up09b87ku4e8@brd.superproxy.io:22225")
+	proxyURL, err := url.Parse(fmt.Sprintf("http://%v:%v@brd.superproxy.io:22225", os.Getenv("SERP_USERNAME"), os.Getenv("SERP_PASSWORD")))
 	if err != nil {
 		fmt.Println("Error parsing proxy URL:", err)
 		return
@@ -92,7 +94,7 @@ func main() {
 
 	//fmt.Printf("Search Results: %+v\n", company_search_results)
 
-	topSearch := make([]URLPayload, 0)
+	topSearch := []URLPayload{} 
 	for i, v := range company_search_results.OrganicSearchResults {
 		// Get top search
 		if i > 0 {
@@ -100,6 +102,8 @@ func main() {
 		}
 		topSearch = append(topSearch, URLPayload{URL: v.Link})
 	}
+
+	fmt.Println("Topsearch result: ", topSearch)
 
 	// Build Organization profile with Crunchbase
 
@@ -117,6 +121,7 @@ func main() {
 
 func GetSERPData(searchURL *url.URL, proxyURL *url.URL) (*SERPResults, error) {
 	// Create an HTTP transport with proxy and skip SSL verification
+	fmt.Println("Getting SERP data...")
 	transport := &http.Transport{
 		Proxy: http.ProxyURL(proxyURL),
 		TLSClientConfig: &tls.Config{
@@ -154,12 +159,16 @@ func GetSERPData(searchURL *url.URL, proxyURL *url.URL) (*SERPResults, error) {
 		return nil, fmt.Errorf("Error unmarshaling JSON: %v", err)
 	}
 
+	fmt.Printf("Search Results: %+v\n", results)
+
 	return &results, nil
 
 }
 
 // Function to send request and get company info
 func FetchCompanyInfo(payloadData []URLPayload) ([]CompanyInfo, error) {
+
+	fmt.Println("Fetching company info...")
 	// Marshal the payload into JSON
 	payload, err := json.Marshal(payloadData)
 	if err != nil {
@@ -249,14 +258,13 @@ func FetchCompanyInfo(payloadData []URLPayload) ([]CompanyInfo, error) {
 		return companyInfo, nil
 
 	}
-   
-  return []CompanyInfo{}, fmt.Errorf("No company information found.") 
+
+	return []CompanyInfo{}, fmt.Errorf("No company information found.")
 
 }
 
 // Function to fetch snapshot status by ID
 func FetchSnapshotStatus(snapshotID string) (SnapshotStatus, error) {
-
 	time.Sleep(3 * time.Second)
 
 	// Replace the snapshot ID in the URL
@@ -299,6 +307,7 @@ func FetchSnapshotStatus(snapshotID string) (SnapshotStatus, error) {
 	}
 
 	if snapshotStatus.Status == "running" {
+		fmt.Println("Snapshot is still running...", snapshotID)
 		FetchSnapshotStatus(snapshotID)
 	}
 
