@@ -48,21 +48,10 @@ type URLPayload struct {
 	URL string `json:"url"`
 }
 
-// What data do I want?
-// I want specific product information. Ideally this would come from scraping a company home page. That has its challenges. Can I build a product portfolio another way?
-
-// Sources:
-// Crunchbase (Company Profile), G2 (Product Info),
-
-// API workflow
-// Make call. Check for status of snapshot. Process snapshot.
-
-// Create Company Profile
-// Each profile should have all the orgs available products and services.
-// Employee Count
-// Leadership
-
-// Crunchbase provides a full_description and products_and_services
+// Company profile
+// Crunchbase, Owler, Zoominfo
+// Product Descriptions
+// Company Description
 
 func main() {
 
@@ -71,7 +60,7 @@ func main() {
 		fmt.Printf("No .env.local file found: %v", err)
 	}
 
-	company_website := "https://www.energytransfer.com"
+	company_website := "https://www.ups.com/us/en/home"
 	//customer_website := "https://topgolf.com"
 
 	// Set up the proxy URL
