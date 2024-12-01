@@ -57,7 +57,14 @@ type ScrapedDataAI struct {
 	Summary
 }
 
-func (ai *ScrapedDataAI) Summarize(text string) (Summary, error) {
+func (ai *ScrapedDataAI) Summarize(info CompanyInfo) (Summary, error) {
+
+	var formattedText string
+	formattedText += fmt.Sprintf("Company Description: %s\n", info.FullDescription)
+	for _, product := range info.Products {
+		formattedText += fmt.Sprintf("Product Name: %s\nDescription: %s\n", product.ProductName, product.ProductDescription)
+	}
+	formattedText += fmt.Sprintf("Number of Employees: %s\n", info.EmployeeCount)
 
 	client := &http.Client{}
 	// Create the request body
@@ -70,7 +77,7 @@ func (ai *ScrapedDataAI) Summarize(text string) (Summary, error) {
 			},
 			{
 				Role:    "user",
-				Content: text,
+				Content: formattedText,
 			},
 		},
 	}

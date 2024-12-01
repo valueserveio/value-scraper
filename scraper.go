@@ -1,98 +1,306 @@
 package main
 
 import (
-	"log"
-	"regexp"
-	"strings"
+	"bytes"
+	"crypto/tls"
+	"encoding/json"
+	"fmt"
+	"io"
+	"net/http"
+	"net/url"
+	"os"
+	"time"
 
-	"github.com/gocolly/colly/v2"
+	"github.com/joho/godotenv"
 )
 
-type ScrapedData struct {
-	URL         string `json:"url,omitempty"`
-	Title       string `json:"title,omitempty"`
-	Description string `json:"description,omitempty"`
-	Summary     string `json:"summary,omitempty"`
-	// AllText     string `json:"allText,omitempty"`
+type SERPResults struct {
+	OrganicSearchResults []OrganicSearchResult `json:"organic"`
 }
 
-// TODO: Update tests
+type OrganicSearchResult struct {
+	Link        string `json:"link,omitempty"`
+	DisplayLink string `json:"display_link,omitempty"`
+	Title       string `json:"title,omitempty"`
+	Description string `json:"description,omitempty"`
+	Rank        int    `json:"rank,omitempty"`
+	GlobalRank  int    `json:"global_rank,omitempty"`
+}
 
-func ScrapeData(url string, generateSummary bool) (ScrapedData, error) {
-	data := ScrapedData{URL: url}
-	var allText strings.Builder
-	uniqueText := make(map[string]struct{})
-	c := colly.NewCollector()
+type SnapshotStatus struct {
+	SnapShotID string `json:"snapshot_id,omitempty"`
+	Status     string `json:"status,omitempty"`
+	Message    string `json:"message,omitempty"`
+}
 
-	data.URL = url
+// Coming from crunchbase
+type CompanyInfo struct {
+	FullDescription string           `json:"full_description,omitempty"`
+	Products        []ProductDetails `json:"products_and_services,omitempty"`
+	EmployeeCount   string           `json:"num_employees"`
+	Summary         string           `json:"summary,omitempty"`
+}
 
-	// Define what to scrape
-	c.OnHTML("title", func(e *colly.HTMLElement) {
-		data.Title = e.Text
-	})
+type ProductDetails struct {
+	ProductName        string `json:"product_name,omitempty"`
+	ProductDescription string `json:"product_description,omitempty"`
+}
 
-	c.OnHTML("meta[name=description]", func(e *colly.HTMLElement) {
-		data.Description = e.Attr("content")
-	})
+type URLPayload struct {
+	URL string `json:"url"`
+}
 
-	// // Capture all text (replaced with other solution)
-	// c.OnHTML("body", func(e *colly.HTMLElement) {
-	// 	allText.WriteString(e.Text)
-	// })
+// Company profile
+// Crunchbase, Owler, Zoominfo
+// Product Descriptions
+// Company Description
 
-	// Detect JSON-like patterns
-	jsonLikePattern := regexp.MustCompile(`\{.*\}|\[.*\]`)
+func scraper(companyWebsite string) ([]CompanyInfo, error) {
 
-	// Capture text from specific elements, excluding repetitive or non-informative sections
-	c.OnHTML("main, article, section, div.content, div.main-content", func(e *colly.HTMLElement) {
-		e.ForEach("p, h1, h2, h3, h4, h5, h6, li, span, div, a, td, th, blockquote, pre, code", func(_ int, el *colly.HTMLElement) {
-			text := strings.TrimSpace(el.Text)
-			if _, exists := uniqueText[text]; !exists && text != "" && !jsonLikePattern.MatchString(text) && !strings.Contains(text, "iframe") {
-				uniqueText[text] = struct{}{}
-				if !strings.Contains(allText.String(), text) {
-					allText.WriteString(text)
-				}
-			}
-		})
-	})
+	// Load .env.local file if it exists
+	if err := godotenv.Load(".env.local"); err != nil {
+		fmt.Printf("No .env.local file found: %v", err)
+	}
 
-	// Handle errors
-	c.OnError(func(_ *colly.Response, err error) {
-		log.Println("Something went wrong:", err)
-	})
-
-	// Visit the URL
-	err := c.Visit(url)
+	// Set up the proxy URL
+	proxyURL, err := url.Parse(fmt.Sprintf("http://%v:%v@brd.superproxy.io:22225", os.Getenv("SERP_USERNAME"), os.Getenv("SERP_PASSWORD")))
 	if err != nil {
-		return data, err
+		fmt.Println("Error parsing proxy URL:", err)
+		return nil, err
 	}
 
-	// // Remove duplicates from the collected text (replaced with other solution)
-	// allTextSlice := strings.Split(allText.String(), "\n")
-	// uniqueAllText := removeDuplicates(allTextSlice)
-	// data["allText"] = strings.Join(uniqueAllText, "\n")
+	company_request_url, err := url.Parse(fmt.Sprintf("https://www.google.com/search?q=%v+crunchbase&brd_json=1", companyWebsite))
+	if err != nil {
+		fmt.Println("Error company search URL:", err)
+		return nil, err
+	}
 
-	if generateSummary {
-		s := ScrapedDataAI{}
-		summarizedText, err := s.Summarize(allText.String())
-		if err != nil {
-			log.Println("Error summarizing text:", err)
-			return data, err
+	company_search_results, err := GetSERPData(company_request_url, proxyURL)
+	if err != nil {
+		fmt.Println("Error getting Company SERP data", err)
+	}
+
+	//fmt.Printf("Search Results: %+v\n", company_search_results)
+
+	topSearch := []URLPayload{}
+	for i, v := range company_search_results.OrganicSearchResults {
+		// Get top search
+		if i > 0 {
+			break
 		}
-		s.Summary = summarizedText
-		// fmt.Println("Summary:", s.Summary)
-		data.Summary = string(summarizedText)
+		topSearch = append(topSearch, URLPayload{URL: v.Link})
 	}
 
-	//data.AllText = allText.String()
+	fmt.Println("Topsearch result: ", topSearch)
 
-	// Convert struct to JSON
-	// jsonData, err := json.Marshal(data)
-	// if err != nil {
-	// 	return data, err
-	// }
+	// Build Organization profile with Crunchbase
 
-	return data, nil
+	// Fetch company info
+	companyInfo, err := FetchCompanyInfo(topSearch)
+	if err != nil {
+		fmt.Println("Error fetching company profile:", err)
+		return nil, err
+	}
 
-	// data["allText"] = allText.String()
+	// Print the result
+	fmt.Printf("Company Info: %+v\n", companyInfo)
+
+	return companyInfo, nil
+
+}
+
+func GetSERPData(searchURL *url.URL, proxyURL *url.URL) (*SERPResults, error) {
+	// Create an HTTP transport with proxy and skip SSL verification
+	fmt.Println("Getting SERP data...")
+	transport := &http.Transport{
+		Proxy: http.ProxyURL(proxyURL),
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: true, // Ignore SSL certificate errors
+		},
+	}
+
+	// Create an HTTP client
+	client := &http.Client{
+		Transport: transport,
+	}
+	// Create the request
+	req, err := http.NewRequest("GET", searchURL.String(), nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %v", err)
+	}
+
+	// Perform the request
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error making request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read and print the response
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("error reading response: %v", err)
+	}
+
+	// Unmarshal the JSON response into the SERPResults struct
+	var results SERPResults
+	err = json.Unmarshal(body, &results)
+	if err != nil {
+		return nil, fmt.Errorf("error unmarshaling JSON: %v", err)
+	}
+
+	fmt.Printf("Search Results: %+v\n", results)
+
+	return &results, nil
+
+}
+
+// Function to send request and get company info
+func FetchCompanyInfo(payloadData []URLPayload) ([]CompanyInfo, error) {
+
+	fmt.Println("Fetching company info...")
+	// Marshal the payload into JSON
+	payload, err := json.Marshal(payloadData)
+	if err != nil {
+		return []CompanyInfo{}, fmt.Errorf("error marshaling payload: %v", err)
+	}
+
+	// Define the URL
+	url := "https://api.brightdata.com/datasets/v3/trigger?dataset_id=gd_l1vijqt9jfj7olije&include_errors=true"
+
+	// Create the request
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(payload))
+	if err != nil {
+		return []CompanyInfo{}, fmt.Errorf("error creating request: %v", err)
+	}
+
+	// Set headers
+	req.Header.Set("Authorization", fmt.Sprintf("Bearer %v", os.Getenv("BRIGHT_TOKEN")))
+	req.Header.Set("Content-Type", "application/json")
+
+	// Perform the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return []CompanyInfo{}, fmt.Errorf("error making request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return []CompanyInfo{}, fmt.Errorf("error reading response body: %v", err)
+	}
+
+	var snapshotStatus SnapshotStatus
+	err = json.Unmarshal(body, &snapshotStatus)
+	if err != nil {
+		return []CompanyInfo{}, fmt.Errorf("error unmarshaling snapshot response: %v", err)
+	}
+
+	// Recursively checks snapshot status until company info is ready
+	snapShotStatus, snapshotErr := FetchSnapshotStatus(snapshotStatus.SnapShotID)
+	if snapshotErr != nil {
+		return []CompanyInfo{}, fmt.Errorf("error getting snapshot status: %v", err)
+
+	}
+
+	if snapShotStatus.Status == "complete" {
+		// Replace the snapshot ID in the URL
+		url := fmt.Sprintf("https://api.brightdata.com/datasets/v3/snapshot/%s?format=json", snapShotStatus.SnapShotID)
+
+		// Get the Bearer token from the environment variable
+		token := os.Getenv("BRIGHT_TOKEN")
+		if token == "" {
+			return []CompanyInfo{}, fmt.Errorf("environment variable BRIGHT_TOKEN is not set")
+		}
+
+		// Create the request
+		req, err := http.NewRequest("GET", url, nil)
+		if err != nil {
+			return []CompanyInfo{}, fmt.Errorf("error creating request: %v", err)
+		}
+
+		// Set the Authorization header
+		req.Header.Set("Authorization", "Bearer "+token)
+
+		// Perform the request
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			return []CompanyInfo{}, fmt.Errorf("error making request: %v", err)
+		}
+		defer resp.Body.Close()
+
+		// Read the response body
+		body, err := io.ReadAll(resp.Body)
+		if err != nil {
+			return []CompanyInfo{}, fmt.Errorf("error reading response body: %v", err)
+		}
+
+		//Unmarshal the response into CompanyInfo
+		var companyInfo []CompanyInfo
+		err = json.Unmarshal(body, &companyInfo)
+		if err != nil {
+			return []CompanyInfo{}, fmt.Errorf("error unmarshaling response: %v", err)
+		}
+
+		return companyInfo, nil
+
+	}
+
+	return []CompanyInfo{}, fmt.Errorf("no company information found")
+
+}
+
+// Function to fetch snapshot status by ID
+func FetchSnapshotStatus(snapshotID string) (SnapshotStatus, error) {
+	time.Sleep(3 * time.Second)
+
+	// Replace the snapshot ID in the URL
+	url := fmt.Sprintf("https://api.brightdata.com/datasets/v3/snapshot/%s?format=json", snapshotID)
+
+	// Get the Bearer token from the environment variable
+	token := os.Getenv("BRIGHT_TOKEN")
+	if token == "" {
+		return SnapshotStatus{}, fmt.Errorf("environment variable BRIGHT_TOKEN is not set")
+	}
+
+	// Create the request
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return SnapshotStatus{}, fmt.Errorf("error creating request: %v", err)
+	}
+
+	// Set the Authorization header
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	// Perform the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return SnapshotStatus{}, fmt.Errorf("error making request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	// Read the response body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return SnapshotStatus{}, fmt.Errorf("error reading response body: %v", err)
+	}
+
+	// Unmarshal the response into SnapshotStatus
+	var snapshotStatus SnapshotStatus
+	err = json.Unmarshal(body, &snapshotStatus)
+	if err != nil {
+		return SnapshotStatus{}, fmt.Errorf("error unmarshaling JSON: %v", err)
+	}
+
+	if snapshotStatus.Status == "running" {
+		fmt.Println("Snapshot is still running...", snapshotID)
+		FetchSnapshotStatus(snapshotID)
+	}
+
+	return SnapshotStatus{Status: "complete", SnapShotID: snapshotID}, nil
+
 }
