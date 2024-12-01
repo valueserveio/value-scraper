@@ -6,10 +6,9 @@ Example POST request:
 curl -X POST http://localhost:3000/scrape \
      -H "Content-Type: application/json" \
      -d '{
-           "customer_url": "http://example.com/customer",
-           "product_url": "http://example.com/product"
+           "url": "http://example.com/company"
          }'
 ```
 
 
-With new changes run with ```go run .```
+ Command to run ```go run .```
