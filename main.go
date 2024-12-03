@@ -7,12 +7,12 @@ import (
 	"net/http"
 )
 
-var req struct {
-	URL string `json:"url"`
-}
-
 // Handler function to process the scrape request
 func scrapeHandler(w http.ResponseWriter, r *http.Request) {
+
+	var req struct {
+		URL string `json:"url"`
+	}
 
 	if r.Method != http.MethodPost {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
