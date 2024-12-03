@@ -7,33 +7,36 @@ import (
 	"net/http"
 )
 
-func main() {
-	// Handle the /scrape endpoint
-	http.HandleFunc("/scrape", scrapeHandler)
-
-	// Start the server on port 3000
-	log.Println("Server is starting on port 3000...")
-	if err := http.ListenAndServe(":3000", nil); err != nil {
-		log.Fatalf("Failed to start server: %v", err)
-	}
+var req struct {
+	URL string `json:"url"`
 }
 
 // Handler function to process the scrape request
 func scrapeHandler(w http.ResponseWriter, r *http.Request) {
-	// Parse the URL parameter from the query string
-	url := r.URL.Query().Get("url")
-	if url == "" {
-		http.Error(w, "Missing 'url' query parameter", http.StatusBadRequest)
+
+	if r.Method != http.MethodPost {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "Invalid JSON body", http.StatusBadRequest)
+		return
+	}
+
+	if req.URL == "" {
+		http.Error(w, "Missing 'url' in request body", http.StatusBadRequest)
 		return
 	}
 
 	// Call the scraper function with the provided URL
-	companyInfo, err := scraper(url)
+	companyInfo, err := scraper(req.URL)
 	if err != nil {
 		http.Error(w, fmt.Sprintf("Error scraping data: %v", err), http.StatusInternalServerError)
 		return
 	}
 
+	// Summarize the text for each company info
 	for i := range companyInfo {
 		s := ScrapedDataAI{}
 		summarizedText, err := s.Summarize(companyInfo[i])
@@ -41,7 +44,7 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, fmt.Sprintf("Error summarizing text: %v", err), http.StatusInternalServerError)
 			return
 		}
-		fmt.Printf("Summary for range %v of url(%v): %v", i, url, summarizedText)
+		fmt.Printf("Summary for range %v of url(%v): %v", i, req.URL, summarizedText)
 		companyInfo[i].Summary = string(summarizedText)
 	}
 
@@ -53,5 +56,16 @@ func scrapeHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, fmt.Sprintf("Error encoding response: %v", err), http.StatusInternalServerError)
 	}
 
-	fmt.Println("Done scraping:", url)
+	fmt.Println("Done scraping:", req.URL)
+}
+
+func main() {
+	// Handle the /scrape endpoint
+	http.HandleFunc("/scrape", scrapeHandler)
+
+	// Start the server on port 3000
+	log.Println("Server is starting on port 3000...")
+	if err := http.ListenAndServe(":3000", nil); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
